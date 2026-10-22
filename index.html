@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Listener Desk ― 配信者のためのリスナー記録アプリ</title>
+<meta name="description" content="配信中に横に置く、リスナーさんの記憶帳。来訪順・応援の回数・メモをカードで記録し、配信の振り返りもできる PC アプリ。データは完全ローカル保存。">
+<meta property="og:title" content="Listener Desk">
+<meta property="og:description" content="配信者のための、リスナーの記録と配信活動の振り返りができる PC アプリ">
+<meta property="og:image" content="assets/main.jpg">
+<link rel="icon" href="assets/icon.png">
+<style>
+  /* 色：キャラクターが映える青・白を基調に、アプリのラベンダー・ピンクをアクセントに使う */
+  :root {
+    --bg: #f4f8ff; --surface: #ffffff; --ink: #1d2a4a; --muted: #56627e; --line: #d8e3f5;
+    --blue: #2f6fe0; --blue-soft: #e3eeff; --lavender: #8e7cc3; --pink: #d8487e; --gold: #f2b705;
+    --radius: 18px; --shadow: 0 10px 30px rgba(29, 42, 74, .10);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", "Segoe UI", system-ui, sans-serif; line-height: 1.75; }
+  a { color: var(--blue); }
+  img { max-width: 100%; display: block; }
+  .wrap { width: min(1080px, 100% - 32px); margin: 0 auto; }
+  header.top { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; }
+  header.top .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; text-decoration: none; color: var(--ink); }
+  header.top .brand img { width: 36px; height: 36px; border-radius: 10px; }
+  nav.links { display: flex; gap: 16px; font-size: 14px; }
+  nav.links a { color: var(--muted); text-decoration: none; font-weight: 700; }
+  nav.links a:hover { color: var(--blue); }
+  .lang-switch { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .lang-switch button { border: 0; background: transparent; padding: 6px 12px; font: inherit; font-size: 13px; font-weight: 700; color: var(--muted); cursor: pointer; }
+  .lang-switch button[aria-pressed="true"] { background: var(--blue); color: #fff; }
+  .hero { padding: 36px 0 12px; }
+  .hero-card { position: relative; border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); background: var(--surface); }
+  .hero-card img { width: 100%; height: auto; }
+  .hero-copy { padding: 28px clamp(20px, 4vw, 44px) 32px; }
+  .hero-copy h1 { margin: 0 0 6px; font-size: clamp(24px, 3.6vw, 38px); line-height: 1.35; letter-spacing: .01em; }
+  .hero-copy .sub { margin: 0 0 14px; color: var(--muted); font-size: clamp(15px, 1.8vw, 18px); font-weight: 700; }
+  .hero-copy .lead { margin: 0; max-width: 760px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: 13px; font-weight: 800; }
+  /* いちばん目立たせる注意書き：データは完全ローカル保存・クラウド同期なし */
+  .local-notice { margin: 22px 0 8px; display: flex; gap: 16px; align-items: flex-start; padding: 20px 22px; border-radius: var(--radius); background: #fff8e1; border: 2px solid var(--gold); box-shadow: var(--shadow); }
+  .local-notice .icon { flex: 0 0 auto; font-size: 30px; line-height: 1; }
+  .local-notice strong { display: block; font-size: clamp(16px, 2vw, 20px); line-height: 1.5; color: #5b4300; }
+  .local-notice p { margin: 6px 0 0; color: #6b5512; font-size: 14px; }
+  section { padding: 40px 0 8px; }
+  section > .wrap > h2 { margin: 0 0 6px; font-size: clamp(22px, 2.6vw, 28px); }
+  section > .wrap > .section-lead { margin: 0 0 20px; color: var(--muted); }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; box-shadow: 0 4px 14px rgba(29, 42, 74, .05); }
+  .card h3 { margin: 0 0 6px; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+  .card p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .card .tag { display: inline-block; margin-bottom: 8px; font-size: 12px; font-weight: 800; color: var(--pink); letter-spacing: .04em; }
+  .shots { display: grid; gap: 22px; }
+  figure { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  figure img { width: 100%; height: auto; border-bottom: 1px solid var(--line); }
+  figcaption { padding: 12px 18px; color: var(--muted); font-size: 14px; }
+  .langs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; padding: 0; list-style: none; }
+  .langs li { padding: 6px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-weight: 700; font-size: 14px; }
+  .translation-note { margin: 0; padding: 12px 16px; border-radius: 14px; background: #fdeef4; color: #7a2347; font-weight: 700; }
+  table.req { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+  table.req th, table.req td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 15px; }
+  table.req th { width: 32%; background: #f8fbff; font-weight: 800; }
+  table.req tr:last-child th, table.req tr:last-child td { border-bottom: 0; }
+  details { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; }
+  details summary { cursor: pointer; font-weight: 800; }
+  details p { margin: 8px 0 0; color: var(--muted); }
+  .future { color: var(--muted); font-size: 14px; }
+  footer { margin-top: 48px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center; }
+  footer img { width: 160px; height: auto; }
+  @media (max-width: 720px) {
+    nav.links { display: none; }
+    table.req th { width: 40%; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/icon.png" alt="" width="36" height="36">Listener Desk</a>
+    <nav class="links" aria-label="ページ内">
+      <a href="#features" data-i18n="navFeatures">機能</a>
+      <a href="#screens" data-i18n="navScreens">画面</a>
+      <a href="#requirements" data-i18n="navReq">動作環境</a>
+      <a href="#faq" data-i18n="navFaq">よくある質問</a>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="ja" aria-pressed="true">日本語</button>
+      <button type="button" data-lang="en" aria-pressed="false">English</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div class="hero-card">
+      <img src="assets/main.jpg" width="1232" height="706" alt="Listener Desk のキービジュアル：ヘッドセットを付けた白い犬のキャラクター" data-i18n-alt="heroAlt">
+      <div class="hero-copy">
+        <h1 data-i18n="heroTitle">「あのときの話」を、ちゃんと覚えている配信へ。</h1>
+        <p class="sub" data-i18n="heroSub">覚えるのはアプリに。あなたは目の前のリスナーさんに。</p>
+        <p class="lead" data-i18n="heroLead">Listener Desk は、配信中に横に置いて使う、リスナーさんの記憶帳です。来訪順・応援の回数・話題のメモをカードで記録し、配信のあとには振り返りもできる PC アプリです。</p>
+        <div class="badges">
+          <span class="badge" data-i18n="badgeSteam">Steam で発売予定</span>
+          <span class="badge" data-i18n="badgeOs">Windows / macOS</span>
+          <span class="badge" data-i18n="badgeLangs">12言語</span>
+          <span class="badge" data-i18n="badgeOnce">本体は買い切り</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="local-notice" role="note">
+      <span class="icon" aria-hidden="true">🔒</span>
+      <div>
+        <strong data-i18n="localTitle">本アプリのデータは完全ローカル保存のため、クラウド同期はありません。</strong>
+        <p data-i18n="localBody">リスナー情報や記録は、お使いの PC の中だけに保存されます。アプリを使っている最中にネット接続は求めません。別の PC へ移すときや万一に備えて、バックアップ機能（好きなフォルダへの保存と、1日1回の自動バックアップ）をご利用ください。</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <h2 data-i18n="featuresTitle">できること</h2>
+      <p class="section-lead" data-i18n="featuresLead">配信中は「配信モード」、配信の前後は「管理モード」。2つの画面で、リスナーさんとの時間を支えます。</p>
+      <div class="grid">
+        <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f1Title">🗂 リスナーカード</h3><p data-i18n="f1Body">最大30枚のカードに、名前・友好度・応援の回数・月間成績・自分で作った項目（話題メモ、誕生日など）を表示。ドラッグで並べ替えられます。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f2Title">🚪 来訪記録</h3><p data-i18n="f2Body">「＋来訪」を押すだけで、今の枠（朝枠・昼枠・夜枠など）で何番目に来てくれたかを記録。押し間違いは取り消し・入れ替えできます。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f3Title">💌 今日のお礼</h3><p data-i18n="f3Body">その日に来てくれた人・応援してくれた人を一覧に。お礼をしたらチェックを入れると色が外れ、「まだお礼していない人だけ」で残りを確認できます。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f4Title">🎨 応援回数の段階色</h3><p data-i18n="f4Body">その日の応援の回数に応じて、カードの回数欄に色が付きます。色と回数の区切りは自由に変えられます（オン／オフ可）。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f5Title">📊 ダッシュボードと画像保存</h3><p data-i18n="f5Body">応援の推移や月間ランク別の人数をグラフで振り返り。SNS に載せやすいサイズで画像保存でき、リスナー名を伏せる設定が最初からオンです。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f6Title">📝 成績記録と Excel 出力</h3><p data-i18n="f6Body">配信後の数値（最大同時視聴者・コメント数など、すべて任意）を記録して月別に振り返り。応援の記録や特典の配布チェックリストを Excel に出力できます。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagLook">見た目</span><h3 data-i18n="f7Title">🎀 選べるテーマ</h3><p data-i18n="f7Body">かわいい系／クール系 × ライト／ダーク、質感は「ぷにぷに・ふわふわ・カッチリ」。色も自由に変えられます。使わない機能はボタンごと隠せます。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagSafe">データの保全</span><h3 data-i18n="f8Title">🛟 バックアップ</h3><p data-i18n="f8Body">手動バックアップ、起動時の自動バックアップ（1日1回・最新7個）、復元前の自動退避。大切な記録を守る仕組みを用意しています。</p></div>
+      </div>
+      <p class="future" data-i18n="future">今後、効果音（SE）やスケジュール作りの拡張機能を別売りで追加していく予定です（内容と時期は決まりしだいお知らせします）。</p>
+    </div>
+  </section>
+
+  <section id="screens">
+    <div class="wrap">
+      <h2 data-i18n="screensTitle">画面</h2>
+      <p class="section-lead" data-i18n="screensLead">画面の名前やデータは、説明用の架空のものです。</p>
+      <div class="shots">
+        <figure><img data-shot="live" src="assets/screens/live-ja.png" width="1600" height="900" alt="配信モードの画面" data-i18n-alt="shotLiveAlt" loading="lazy"><figcaption data-i18n="shotLive">配信モード：カードに来訪順（例：夜枠 3）と応援の回数を記録</figcaption></figure>
+        <figure><img data-shot="thanks" src="assets/screens/thanks-ja.png" width="1600" height="900" alt="今日のお礼の画面" data-i18n-alt="shotThanksAlt" loading="lazy"><figcaption data-i18n="shotThanks">今日のお礼：その日に来た人と回数の一覧。お礼したらチェック</figcaption></figure>
+        <figure><img data-shot="dashboard" src="assets/screens/dashboard-ja.png" width="1600" height="900" alt="ダッシュボードの画面" data-i18n-alt="shotDashAlt" loading="lazy"><figcaption data-i18n="shotDash">ダッシュボード：応援の推移やランクの分布を振り返り</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="languages">
+    <div class="wrap">
+      <h2 data-i18n="langsTitle">対応している言語</h2>
+      <ul class="langs">
+        <li lang="ja">日本語</li><li lang="en">English</li><li lang="zh-Hans">简体中文</li><li lang="zh-Hant">繁體中文</li><li lang="ko">한국어</li><li lang="es">Español</li><li lang="pt-BR">Português (Brasil)</li><li lang="de">Deutsch</li><li lang="fr">Français</li><li lang="id">Bahasa Indonesia</li><li lang="th">ไทย</li><li lang="vi">Tiếng Việt</li>
+      </ul>
+      <p class="translation-note" data-i18n="translationNote">翻訳でおかしなところがあったら、こっそり教えてね (*ﾉω・*)ﾃﾍ</p>
+    </div>
+  </section>
+
+  <section id="requirements">
+    <div class="wrap">
+      <h2 data-i18n="reqTitle">動作環境</h2>
+      <table class="req">
+        <tr><th data-i18n="reqOs">OS</th><td data-i18n="reqOsValue">Windows（64bit）／ macOS 11 以降</td></tr>
+        <tr><th data-i18n="reqNet">ネット接続</th><td data-i18n="reqNetValue">アプリを使っている最中は不要です（Steam での購入・ダウンロード・更新には必要です）。</td></tr>
+        <tr><th data-i18n="reqData">データの保存先</th><td data-i18n="reqDataValue">お使いの PC の中だけ（クラウド同期なし）</td></tr>
+        <tr><th data-i18n="reqPlatform">配信サービス</th><td data-i18n="reqPlatformValue">どの配信サービスでも使えます。配信サービスとの自動連携はなく、来訪・回数・メモは手で入力します。</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <h2 data-i18n="faqTitle">よくある質問</h2>
+      <details><summary data-i18n="q1">クラウド同期はありますか？</summary><p data-i18n="a1">ありません。データはすべてお使いの PC の中に保存されます。</p></details>
+      <details><summary data-i18n="q2">別の PC でも同じデータを使えますか？</summary><p data-i18n="a2">バックアップファイルを保存して、別の PC で復元すれば使えます。自動で同期はしません。</p></details>
+      <details><summary data-i18n="q3">配信中に回線の負担になりませんか？</summary><p data-i18n="a3">アプリ自体は通信をしないので、配信に使う回線の帯域を使いません。</p></details>
+      <details><summary data-i18n="q4">スマホだけで使えますか？</summary><p data-i18n="a4">使えません。Windows または Mac の PC が必要です。</p></details>
+      <details><summary data-i18n="q5">配信サービスのコメントや来訪を自動で取り込めますか？</summary><p data-i18n="a5">自動の取り込みはありません。そのぶん、どの配信サービスでも同じように使えます。</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo.png" width="640" height="219" alt="Listener Desk">
+    <span data-i18n="footer">© Listener Desk. 配信者さんが配信に使う時間を、1秒でも長く。</span>
+  </div>
+</footer>
+
+<script>
+  // 日本語・英語の切り替え（?lang=en で英語。指定が無ければブラウザの言語で選ぶ）
+  const EN = {
+    navFeatures: "Features", navScreens: "Screens", navReq: "Requirements", navFaq: "FAQ",
+    heroAlt: "Listener Desk key art: a white fluffy dog wearing a headset",
+    heroTitle: "Remember every story your listeners shared.",
+    heroSub: "Let the app do the remembering. You focus on the listeners in front of you.",
+    heroLead: "Listener Desk is a listener notebook you keep open beside your stream. Record visit order, support counts and topic notes on cards, then look back on your streams afterwards. A desktop app for streamers.",
+    badgeSteam: "Coming to Steam", badgeOs: "Windows / macOS", badgeLangs: "12 languages", badgeOnce: "One-time purchase",
+    localTitle: "All app data is stored locally on your PC. There is no cloud sync.",
+    localBody: "Your listeners and records are saved only on your own PC, and the app doesn't ask for an internet connection while you use it. To move to another PC, or just in case, use the backup features (save to any folder, plus an automatic backup once a day).",
+    featuresTitle: "What you can do",
+    featuresLead: "Live mode for during your stream, Manage mode for before and after. Two screens that support your time with listeners.",
+    tagLive: "Live mode", tagManage: "Manage mode", tagLook: "Look & feel", tagSafe: "Data safety",
+    f1Title: "🗂 Listener cards", f1Body: "Up to 30 cards showing name, closeness, support count, monthly rank and your own fields (topic notes, birthday and more). Drag to rearrange.",
+    f2Title: "🚪 Visit records", f2Body: "Press “+ Visit” to record who arrived and in what order in the current session (morning, afternoon, night…). Mistakes can be undone or reordered.",
+    f3Title: "💌 Today's thanks", f3Body: "See everyone who visited or supported you that day. Check them off after thanking them and the color clears; “Only not thanked yet” shows who's left.",
+    f4Title: "🎨 Count colors", f4Body: "The count box on each card changes color with today's support count. Colors and thresholds are fully customizable (can be turned off).",
+    f5Title: "📊 Dashboard & image export", f5Body: "Look back on support trends and rank distribution with charts. Save as an image in social-friendly sizes, with listener names hidden by default.",
+    f6Title: "📝 Stream stats & Excel export", f6Body: "Log your numbers after a stream (peak viewers, comments and more, all optional) and review them by month. Export support records and reward checklists to Excel.",
+    f7Title: "🎀 Themes", f7Body: "Kawaii or Cool × Light or Dark, with Squishy, Fluffy or Crisp textures. Customize colors, and hide features you don't use.",
+    f8Title: "🛟 Backups", f8Body: "Manual backups, automatic backups at startup (once a day, newest 7 kept) and an automatic safety copy before restoring.",
+    future: "Optional add-ons such as sound effects and schedule making are planned as separate purchases (details and timing will be announced once decided).",
+    screensTitle: "Screens", screensLead: "Names and data in the screenshots are fictional samples.",
+    shotLiveAlt: "Live mode screen", shotLive: "Live mode: record visit order (e.g. Night 3) and support counts on cards",
+    shotThanksAlt: "Today's thanks screen", shotThanks: "Today's thanks: everyone who came that day, with counts. Check them off after thanking",
+    shotDashAlt: "Dashboard screen", shotDash: "Dashboard: look back on support trends and rank distribution",
+    langsTitle: "Languages",
+    translationNote: "Spotted a weird translation? Please let us know (*ﾉω・*)ﾃﾍ",
+    reqTitle: "System requirements", reqOs: "OS", reqOsValue: "Windows (64-bit) / macOS 11 or later",
+    reqNet: "Internet", reqNetValue: "Not needed while using the app (needed to buy, download and update on Steam).",
+    reqData: "Where data is stored", reqDataValue: "Only on your PC (no cloud sync)",
+    reqPlatform: "Streaming services", reqPlatformValue: "Works with any streaming service. There is no automatic connection to streaming services; you enter visits, counts and notes yourself.",
+    faqTitle: "FAQ",
+    q1: "Is there cloud sync?", a1: "No. All data is stored on your own PC.",
+    q2: "Can I use the same data on another PC?", a2: "Yes, by saving a backup file and restoring it on the other PC. It does not sync automatically.",
+    q3: "Will it use my bandwidth while streaming?", a3: "The app itself doesn't communicate over the network, so it doesn't use the bandwidth you stream with.",
+    q4: "Can I use it on a phone only?", a4: "No. You need a Windows or Mac PC.",
+    q5: "Can it import comments or visits from streaming services automatically?", a5: "No automatic import. In return, it works the same way with any streaming service.",
+    footer: "© Listener Desk. More of your time for streaming, even by a second.",
+  };
+  const JA = {};
+  document.querySelectorAll("[data-i18n]").forEach(el => { JA[el.dataset.i18n] = el.textContent; });
+  document.querySelectorAll("[data-i18n-alt]").forEach(el => { JA[el.dataset.i18nAlt] = el.alt; });
+  const TITLES = { ja: document.title, en: "Listener Desk ― A listener notebook for streamers" };
+  function apply(lang) {
+    const dict = lang === "en" ? EN : JA;
+    document.documentElement.lang = lang;
+    document.title = TITLES[lang];
+    document.querySelectorAll("[data-i18n]").forEach(el => { if (dict[el.dataset.i18n]) el.textContent = dict[el.dataset.i18n]; });
+    document.querySelectorAll("[data-i18n-alt]").forEach(el => { if (dict[el.dataset.i18nAlt]) el.alt = dict[el.dataset.i18nAlt]; });
+    document.querySelectorAll("img[data-shot]").forEach(img => { img.src = `assets/screens/${img.dataset.shot}-${lang}.png`; });
+    document.querySelectorAll(".lang-switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+  }
+  document.querySelectorAll(".lang-switch button").forEach(b => b.addEventListener("click", () => {
+    apply(b.dataset.lang);
+    const url = new URL(location.href); url.searchParams.set("lang", b.dataset.lang); history.replaceState(null, "", url);
+  }));
+  const asked = new URLSearchParams(location.search).get("lang");
+  apply(asked === "en" || asked === "ja" ? asked : ((navigator.language || "ja").toLowerCase().startsWith("ja") ? "ja" : "en"));
+</script>
+</body>
+</html>
