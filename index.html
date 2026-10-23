@@ -69,6 +69,8 @@
   details summary { cursor: pointer; font-weight: 800; }
   details p { margin: 8px 0 0; color: var(--muted); }
   .future { color: var(--muted); font-size: 14px; }
+  .contact-link { display: inline-block; padding: 10px 18px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 800; text-decoration: none; }
+  .contact-link:hover { background: var(--blue); }
   footer { margin-top: 48px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center; }
   footer img { width: 160px; height: auto; }
@@ -87,6 +89,7 @@
       <a href="#screens" data-i18n="navScreens">画面</a>
       <a href="#requirements" data-i18n="navReq">動作環境</a>
       <a href="#faq" data-i18n="navFaq">よくある質問</a>
+      <a href="#contact" data-i18n="navContact">お問い合わせ</a>
     </nav>
     <div class="lang-switch" role="group" aria-label="Language">
       <button type="button" data-lang="ja" aria-pressed="true">日本語</button>
@@ -183,6 +186,13 @@
       <details><summary data-i18n="q5">配信サービスのコメントや来訪を自動で取り込めますか？</summary><p data-i18n="a5">自動の取り込みはありません。そのぶん、どの配信サービスでも同じように使えます。</p></details>
     </div>
   </section>
+  <section id="contact">
+    <div class="wrap">
+      <h2 data-i18n="contactTitle">お問い合わせ</h2>
+      <p data-i18n="contactBody">ご意見・不具合の報告・翻訳のおかしなところは、開発者の X（旧Twitter）までお気軽にどうぞ。</p>
+      <p><a class="contact-link" href="https://x.com/komi_husband" target="_blank" rel="noopener">X：@komi_husband</a></p>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -231,6 +241,8 @@
     q3: "Will it use my bandwidth while streaming?", a3: "The app itself doesn't communicate over the network, so it doesn't use the bandwidth you stream with.",
     q4: "Can I use it on a phone only?", a4: "No. You need a Windows or Mac PC.",
     q5: "Can it import comments or visits from streaming services automatically?", a5: "No automatic import. In return, it works the same way with any streaming service.",
+    navContact: "Contact", contactTitle: "Contact",
+    contactBody: "For feedback, bug reports or odd translations, feel free to reach the developer on X (formerly Twitter).",
     footer: "© Listener Desk. More of your time for streaming, even by a second.",
   };
   const JA = {};
