@@ -69,6 +69,13 @@
   details summary { cursor: pointer; font-weight: 800; }
   details p { margin: 8px 0 0; color: var(--muted); }
   .future { color: var(--muted); font-size: 14px; }
+  /* 開発中の拡張機能 */
+  .dev-badge { display: inline-block; margin-left: 8px; padding: 2px 10px; border-radius: 999px; background: #efe9fb; color: var(--lavender); font-size: 13px; font-weight: 800; vertical-align: middle; }
+  .ext-card { border-color: #d9d0f0; }
+  .ext-card .tag { color: var(--lavender); }
+  .ext-card ul { margin: 8px 0 0; padding-left: 1.2em; color: var(--muted); font-size: 14px; }
+  .ext-note { margin: 10px 0 0; padding: 10px 12px; border-radius: 12px; background: #fff8e1; color: #6b5512; font-size: 13.5px; }
+  .shots.two { margin-top: 22px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
   .contact-link { display: inline-block; padding: 10px 18px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 800; text-decoration: none; }
   .contact-link:hover { background: var(--blue); }
   footer { margin-top: 48px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
@@ -87,6 +94,7 @@
     <nav class="links" aria-label="ページ内">
       <a href="#features" data-i18n="navFeatures">機能</a>
       <a href="#screens" data-i18n="navScreens">画面</a>
+      <a href="#extensions" data-i18n="navExt">拡張機能（開発中）</a>
       <a href="#requirements" data-i18n="navReq">動作環境</a>
       <a href="#faq" data-i18n="navFaq">よくある質問</a>
       <a href="#contact" data-i18n="navContact">お問い合わせ</a>
@@ -134,11 +142,13 @@
         <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f3Title">💌 今日のお礼</h3><p data-i18n="f3Body">その日に来てくれた人・応援してくれた人を一覧に。お礼をしたらチェックを入れると色が外れ、「まだお礼していない人だけ」で残りを確認できます。</p></div>
         <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f4Title">🎨 応援回数の段階色</h3><p data-i18n="f4Body">その日の応援の回数に応じて、カードの回数欄に色が付きます。色と回数の区切りは自由に変えられます（オン／オフ可）。</p></div>
         <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f5Title">📊 ダッシュボードと画像保存</h3><p data-i18n="f5Body">応援の推移や月間ランク別の人数をグラフで振り返り。SNS に載せやすいサイズで画像保存でき、リスナー名を伏せる設定が最初からオンです。</p></div>
-        <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f6Title">📝 成績記録と Excel 出力</h3><p data-i18n="f6Body">配信後の数値（最大同時視聴者・コメント数など、すべて任意）を記録して月別に振り返り。応援の記録や特典の配布チェックリストを Excel に出力できます。</p></div>
-        <div class="card"><span class="tag" data-i18n="tagLook">見た目</span><h3 data-i18n="f7Title">🎀 選べるテーマ</h3><p data-i18n="f7Body">かわいい系／クール系 × ライト／ダーク、質感は「ぷにぷに・ふわふわ・カッチリ」。色も自由に変えられます。使わない機能はボタンごと隠せます。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f6Title">📝 成績記録と Excel 出力</h3><p data-i18n="f6Body">配信後の数値（最大同時視聴者・コメント数など、すべて任意）を記録して、月ごとにグラフで振り返り・画像で保存。「コメント数」などの項目名は、使っている配信サービスの呼び方に変えられます。応援の記録や特典の配布チェックリストを Excel に出力できます。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagLook">見た目</span><h3 data-i18n="f7Title">🎀 選べるテーマ</h3><p data-i18n="f7Body">かわいい系／クール系 × ライト／ダーク、質感は「ぷにぷに・ふわふわ・カッチリ」。色も自由に変えられ、配信モード・管理モードは色とマークでひと目で見分けられます。使わない機能はボタンごと隠せ、管理メニューの並びや名前も変えられます。</p></div>
         <div class="card"><span class="tag" data-i18n="tagSafe">データの保全</span><h3 data-i18n="f8Title">🛟 バックアップ</h3><p data-i18n="f8Body">手動バックアップ、起動時の自動バックアップ（1日1回・最新7個）、復元前の自動退避。大切な記録を守る仕組みを用意しています。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f9Title">📤 活動レポート</h3><p data-i18n="f9Body">選んだ期間の活動（配信の記録・配信時間・応援・月間ランク・来訪・予定など）を、1つの Excel にまとめて書き出し。自分の振り返りや記録の保管に。リスナーの情報を含めるかどうかも選べます。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagHelp">はじめての方へ</span><h3 data-i18n="f10Title">🧭 案内とツアー</h3><p data-i18n="f10Body">最初に決めておくと便利な設定の案内と、画面の場所を光らせながら使い方を紹介するツアー付き。迷ったら「？ 使い方」からいつでも見直せます。</p></div>
       </div>
-      <p class="future" data-i18n="future">今後、効果音（SE）やスケジュール作りの拡張機能を別売りで追加していく予定です（内容と時期は決まりしだいお知らせします）。</p>
+      <p class="future" data-i18n="future">別売りの拡張機能も開発中です（下の「拡張機能」をご覧ください）。</p>
     </div>
   </section>
 
@@ -150,6 +160,28 @@
         <figure><img data-shot="live" src="assets/screens/live-ja.png" width="1600" height="900" alt="配信モードの画面" data-i18n-alt="shotLiveAlt" loading="lazy"><figcaption data-i18n="shotLive">配信モード：カードに来訪順（例：夜枠 3）と応援の回数を記録</figcaption></figure>
         <figure><img data-shot="thanks" src="assets/screens/thanks-ja.png" width="1600" height="900" alt="今日のお礼の画面" data-i18n-alt="shotThanksAlt" loading="lazy"><figcaption data-i18n="shotThanks">今日のお礼：その日に来た人と回数の一覧。お礼したらチェック</figcaption></figure>
         <figure><img data-shot="dashboard" src="assets/screens/dashboard-ja.png" width="1600" height="900" alt="ダッシュボードの画面" data-i18n-alt="shotDashAlt" loading="lazy"><figcaption data-i18n="shotDash">ダッシュボード：応援の推移やランクの分布を振り返り</figcaption></figure>
+        <figure><img data-shot="activity" src="assets/screens/activity-ja.png" width="1600" height="900" alt="活動レポートの画面" data-i18n-alt="shotActivityAlt" loading="lazy"><figcaption data-i18n="shotActivity">活動レポート：名前・期間・リスナーの情報の有無を選んで、Excel に書き出し</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="extensions">
+    <div class="wrap">
+      <h2><span data-i18n="extTitle">拡張機能</span><span class="dev-badge" data-i18n="devBadge">開発中</span></h2>
+      <p class="section-lead" data-i18n="extLead">本体に追加して使える、別売りの拡張機能を開発しています。画面は開発中のもので、発売までに変わることがあります。内容・価格・時期は決まりしだいお知らせします。</p>
+      <div class="grid">
+        <div class="card ext-card"><span class="tag" data-i18n="tagExt">拡張機能</span><h3 data-i18n="e1Title">📅 スケジュール管理</h3><p data-i18n="e1Body">配信の予定づくりから、SNS 用の告知文、ランクの計画、特典の配布までを1つの画面で。</p>
+          <ul><li data-i18n="e1a">カレンダー・一覧・タイムチャート（今日から1週間、アプリごとの横棒）</li><li data-i18n="e1b">部品を並べるだけで作れる告知文のテンプレートと、コピーの履歴</li><li data-i18n="e1c">カレンダーやタイムチャートを SNS 用の画像で保存</li><li data-i18n="e1d">ランクの目標・予測・実績、特典の対象者の確定と配布の記録</li></ul></div>
+        <div class="card ext-card"><span class="tag" data-i18n="tagExt">拡張機能</span><h3 data-i18n="e2Title">🎙 録音・文字起こし</h3><p data-i18n="e2Body">「配信開始」で配信中の声を録音し、終わったらパソコンの中で文字起こし。言葉で探したり、時刻を押してその場面から聞き直したりできます。</p>
+          <ul><li data-i18n="e2a">音声も文字も外に送らない（パソコンの中だけで処理）</li><li data-i18n="e2b">録音（.wav）と文字（.txt）はファイルとしても保存</li><li data-i18n="e2c">12言語に対応した文字起こし</li></ul>
+          <p class="ext-note" data-i18n="e2Note">文字起こしにかかる時間は、パソコンの性能によって大きく変わります（目安：GPU があれば1時間の配信で数分〜十数分、無ければ1時間ほど）。また、この拡張機能を入れるとアプリが大きくなり、初回に文字起こしのツール（約0.5GB）のダウンロードが必要です。</p></div>
+        <div class="card ext-card"><span class="tag" data-i18n="tagExtOffice">事務所向けの拡張機能</span><h3 data-i18n="e3Title">🏢 マネージャー（事務所向け）</h3><p data-i18n="e3Body">事務所のマネージャーが、所属するライバー全員の活動を1つの Listener Desk でまとめて見られるようにする構想です。</p>
+          <ul><li data-i18n="e3a">ライバーは本体の「活動レポート」を書き出して渡すだけ（ネットでの共有はしません）</li><li data-i18n="e3b">リスナーの情報を含めるかは、ライバー自身が選べます</li><li data-i18n="e3c">全員の配信状況の比較、予定の一覧、面談・目標のメモ、月のまとめ</li><li data-i18n="e3d">事務所向けに1つの価格を予定</li></ul></div>
+      </div>
+      <div class="shots two">
+        <figure><img data-shot="schedule" src="assets/screens/schedule-ja.png" width="1600" height="900" alt="スケジュール管理のタイムチャート（開発中）" data-i18n-alt="shotScheduleAlt" loading="lazy"><figcaption data-i18n="shotSchedule">スケジュール管理（開発中）：タイムチャートで1週間の予定をアプリごとに</figcaption></figure>
+        <figure><img data-shot="announce" src="assets/screens/announce-ja.png" width="1600" height="900" alt="スケジュール管理の告知文（開発中）" data-i18n-alt="shotAnnounceAlt" loading="lazy"><figcaption data-i18n="shotAnnounce">スケジュール管理（開発中）：予定から告知文を作ってコピー</figcaption></figure>
+        <figure><img data-shot="recording" src="assets/screens/recording-ja.png" width="1600" height="900" alt="録音・文字起こし（開発中）" data-i18n-alt="shotRecordingAlt" loading="lazy"><figcaption data-i18n="shotRecording">録音・文字起こし（開発中）：時刻を押すとその場面から再生</figcaption></figure>
       </div>
     </div>
   </section>
@@ -221,10 +253,27 @@
     f3Title: "💌 Today's thanks", f3Body: "See everyone who visited or supported you that day. Check them off after thanking them and the color clears; “Only not thanked yet” shows who's left.",
     f4Title: "🎨 Count colors", f4Body: "The count box on each card changes color with today's support count. Colors and thresholds are fully customizable (can be turned off).",
     f5Title: "📊 Dashboard & image export", f5Body: "Look back on support trends and rank distribution with charts. Save as an image in social-friendly sizes, with listener names hidden by default.",
-    f6Title: "📝 Stream stats & Excel export", f6Body: "Log your numbers after a stream (peak viewers, comments and more, all optional) and review them by month. Export support records and reward checklists to Excel.",
-    f7Title: "🎀 Themes", f7Body: "Kawaii or Cool × Light or Dark, with Squishy, Fluffy or Crisp textures. Customize colors, and hide features you don't use.",
+    f6Title: "📝 Stream stats & Excel export", f6Body: "Log your numbers after a stream (peak viewers, comments and more, all optional), then review them by month with charts and save them as images. Rename items like “Comments” to match your streaming service. Export support records and reward checklists to Excel.",
+    f7Title: "🎀 Themes", f7Body: "Kawaii or Cool × Light or Dark, with Squishy, Fluffy or Crisp textures. Customize colors, and tell Live and Manage mode apart at a glance by color and icon. Hide features you don't use, and reorder or rename the manage menu.",
     f8Title: "🛟 Backups", f8Body: "Manual backups, automatic backups at startup (once a day, newest 7 kept) and an automatic safety copy before restoring.",
-    future: "Optional add-ons such as sound effects and schedule making are planned as separate purchases (details and timing will be announced once decided).",
+    future: "Optional add-ons are also in development (see “Add-ons” below).",
+    navExt: "Add-ons (in development)", tagHelp: "Getting started",
+    f9Title: "📤 Activity report", f9Body: "Export your activity for any period (stream records, streaming time, support, monthly ranks, visits, schedule and more) into one Excel file, for looking back or keeping records. You choose whether to include listener information.",
+    f10Title: "🧭 Guides & tours", f10Body: "A setup guide for handy settings, plus a tour that highlights each part of the screen as it explains it. Revisit it any time from “? Guide”.",
+    shotActivityAlt: "Activity report screen", shotActivity: "Activity report: choose a name, period and whether to include listener info, then export to Excel",
+    extTitle: "Add-ons", devBadge: "In development",
+    extLead: "We're developing optional add-ons you can buy separately and add to the app. Screens are from development and may change before release. Details, prices and timing will be announced once decided.",
+    tagExt: "Add-on", tagExtOffice: "Add-on for agencies",
+    e1Title: "📅 Schedule", e1Body: "From planning streams to social media announcements, rank plans and reward distribution, all in one screen.",
+    e1a: "Calendar, list and time chart (the next 7 days, bars per app)", e1b: "Announcement templates you build just by arranging parts, with copy history", e1c: "Save the calendar or time chart as a social-ready image", e1d: "Rank goals, forecasts and results; confirm reward recipients and track distribution",
+    e2Title: "🎙 Recording & transcription", e2Body: "Press “Start stream” to record your voice, then transcribe it on your PC afterwards. Search by words, or click a time to replay that moment.",
+    e2a: "Nothing is sent outside: all processing stays on your PC", e2b: "Recordings (.wav) and text (.txt) are also saved as files", e2c: "Transcription in 12 languages",
+    e2Note: "Transcription time depends heavily on your PC (roughly a few to 20 minutes per hour of stream with a GPU, about an hour without). This add-on also makes the app larger and needs a one-time download of the transcription tool (about 0.5 GB).",
+    e3Title: "🏢 Manager (for agencies)", e3Body: "A plan to let agency managers see the activity of all their streamers in one Listener Desk.",
+    e3a: "Streamers just export the app's “Activity report” and hand it over (no online sharing)", e3b: "Streamers choose whether to include listener information", e3c: "Compare everyone's streaming, see schedules side by side, keep meeting and goal notes, and make monthly summaries", e3d: "Planned as a single price for agencies",
+    shotScheduleAlt: "Schedule time chart (in development)", shotSchedule: "Schedule (in development): a week of plans per app in the time chart",
+    shotAnnounceAlt: "Schedule announcements (in development)", shotAnnounce: "Schedule (in development): build an announcement from your plans and copy it",
+    shotRecordingAlt: "Recording & transcription (in development)", shotRecording: "Recording & transcription (in development): click a time to play from that moment",
     screensTitle: "Screens", screensLead: "Names and data in the screenshots are fictional samples.",
     shotLiveAlt: "Live mode screen", shotLive: "Live mode: record visit order (e.g. Night 3) and support counts on cards",
     shotThanksAlt: "Today's thanks screen", shotThanks: "Today's thanks: everyone who came that day, with counts. Check them off after thanking",
