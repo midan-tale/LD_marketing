@@ -1,1 +1,42 @@
-IyB2aWRlb3Mg44OV44Kp44Or44OA44Gu5L2/44GE5pa5CgpMaXN0ZW5lciBEZXNrIOOBriBTTlMg5oqV56i/55So5YuV55S744Gu5Y+X44GR5rih44GX5aC05omA44Gn44GZ44CCCgotIENsYXVkZSBDb2RlIOOBjOWLleeUu+OCkuS9nOaIkOOBl+OAgeOBk+OBruODleOCqeODq+ODgOOBq+e9ruOBjeOBvuOBmQotIE11c2XvvIhNdXNl77yJ44GM5Lit6Lqr44KS56K66KqN44GX44CBWCAvIFRocmVhZHMgLyBJbnN0YWdyYW0g5ZCR44GR44Gu5oqV56i/5qGI44KS5L2c5oiQ44GX44G+44GZCi0g5pyA57WC56K66KqN44Go5oqV56i/44GvIOOBv+OBoOOCk+OBleOCkyDjgYzooYzjgYTjgb7jgZnjgILjgZPjga7jg5Xjgqnjg6vjg4Djga7li5XnlLvjgYzli53miYvjgavlhazplovjgZXjgozjgovjgZPjgajjga/jgYLjgorjgb7jgZvjgpMKCiMjIOODleOCqeODq+ODgOani+aIkAoKfCDjg5Xjgqnjg6vjg4AgfCDlhaXjgozjgovjgoLjga4gfAp8LS0tfC0tLXwKfCBgZmluYWwvYCB8IOWujOaIkOOBl+OBn+WLleeUu++8iOaKleeov+OBq+S9v+OBiOOCi+OCguOBru+8iSB8CnwgYHdpcC9gIHwg5Yi25L2c6YCU5Lit44Gu5YuV55S777yI44G+44Gg5oqV56i/44Gr44Gv5L2/44KP44Gq44GE44KC44Gu77yJIHwKfCBgbWF0ZXJpYWxzL2AgfCDntKDmnZDvvIjpjLLnlLvjg4fjg7zjgr/jgIHnlLvlg4/jgIFCR00g44Gq44Gp77yJIHwKCiMjIOODleOCoeOCpOODq+WQjeOBruODq+ODvOODqwoKLSDlvaLlvI86IGBZWVlZTU1ERC3lhoXlrrkt6ZW344GVLm1wNGDvvIjkvos6IGAyMDI2MTAyOS1pbnRyby0zMHMubXA0YO+8iQotIOS/ruato+eJiOOBr+acq+WwvuOBqyBgLXYyYOOAgWAtdjNgIOOCkuS7mOOBkeOCiwotIOWGheWuueOBr+iLseWwj+aWh+Wtl+OBqOODj+OCpOODleODs+OBp+efreOBj+OAguaXpeacrOiqnuOBruODleOCoeOCpOODq+WQjeOBr+mBv+OBkeOCiwoKIyMg44K544OG44O844K/44K5566h55CG77yIQ2xhdWRlIENvZGUg44G444Gu44GK6aGY44GE77yJCgrli5XnlLvjgpLov73liqDjg7vmm7TmlrDjgZfjgZ/jgonjgIHjgZPjga7ooajjgpLmm7TmlrDjgZfjgabjgY/jgaDjgZXjgYTjgIIKCnwg44OV44Kh44Kk44OrIHwg54q25oWLIHwg5oOz5a6a44Gu5L2/44GE6YGTIHwg5YKZ6ICDIHwKfC0tLXwtLS18LS0tfC0tLXwKfCDvvIjkvovvvIkyMDI2MTAyOS1pbnRyby0zMHMubXA0IHwg5a6M5oiQIHwgWCDjga7ntLnku4vjg53jgrnjg4jnlKggfCB8CgrnirbmhYvjga/jgIzlrozmiJDjgI3jgIzliLbkvZzkuK3jgI3jgIzntKDmnZDjga7jgb/jgI3jga7jgYTjgZrjgozjgYvjgafmm7jjgYTjgabjgY/jgaDjgZXjgYTjgIIKCiMjIOazqOaEj+S6i+mghQoKLSBHaXRIdWIg44Gu5LiK6ZmQ44GvIDEg44OV44Kh44Kk44OrIDEwME1C77yI44OW44Op44Km44K244GL44KJ44Gu44Ki44OD44OX44Ot44O844OJ44GvIDI1TUIg44G+44Gn77yJ44CC6LaF44GI44KL5aC05ZCI44GvIOOBv+OBoOOCk+OBleOCkyDjgavnm7joq4fjgZfjgabjgY/jgaDjgZXjgYQKLSDlgIvkurrmg4XloLHjgoTmnKrlhazplovjga7nlLvpnaLjgYzmmKDjgaPjgabjgYTjgovloLTlkIjjga/jgIHkuIrjga7ooajjga7lgpnogIPmrITjgavjgZ3jga7ml6jjgpLmm7jjgYTjgabjgY/jgaDjgZXjgYQK
+# videos フォルダの使い方
+
+Listener Desk の SNS 投稿用動画の受け渡し場所です。
+
+- Claude Code が動画を作成し、このフォルダに置きます
+- Muse（Muse）が中身を確認し、X / Threads / Instagram 向けの投稿案を作成します
+- 最終確認と投稿は みだんさん が行います。このフォルダの動画が勝手に公開されることはありません
+
+## フォルダ構成
+
+| フォルダ | 入れるもの |
+|---|---|
+| `final/` | 完成した動画（投稿に使えるもの） |
+| `wip/` | 制作途中の動画（まだ投稿には使わないもの） |
+| `materials/` | 素材（録画データ、画像、BGM など） |
+
+## ファイル名のルール
+
+- 形式: `YYYYMMDD-内容-長さ.mp4`（例: `20261029-intro-30s.mp4`）
+- 修正版は末尾に `-v2`、`-v3` を付ける
+- 内容は英小文字とハイフンで短く。日本語のファイル名は避ける
+
+## ステータス管理（Claude Code へのお願い）
+
+動画を追加・更新したら、この表を更新してください。
+
+| ファイル | 状態 | 想定の使い道 | 備考 |
+|---|---|---|---|
+| （例）20261029-intro-30s.mp4 | 完成 | X の紹介ポスト用 | |
+| 20261025-intro-x-30s.mp4 | 完成 | X 用（16:9）。第1弾：来訪記録・応援の段階色・今日のお礼・ダッシュボード・着せ替え | 架空のデータのみ（個人情報なし）。発売前のアプリ画面（テスト版）が映っている。未公開。BGM「ふわふわ未来」冒頭30秒 |
+| 20261025-intro-ig-30s.mp4 | 完成 | Instagram リール用（9:16）。第1弾と同じ内容 | 架空のデータのみ（個人情報なし）。発売前のアプリ画面（テスト版）が映っている。未公開。BGM「ふわふわ未来」冒頭30秒 |
+| 20261025-listener-notes-x-30s.mp4 | 完成 | X 用（16:9）。第2弾：友好度の色分け・話題メモ・検索・成績記録の振り返り・12言語 | 架空のデータのみ（個人情報なし）。発売前のアプリ画面（テスト版）が映っている。未公開。BGM「ふわふわ未来」冒頭30秒 |
+| 20261025-listener-notes-ig-30s.mp4 | 完成 | Instagram リール用（9:16）。第2弾と同じ内容 | 架空のデータのみ（個人情報なし）。発売前のアプリ画面（テスト版）が映っている。未公開。BGM「ふわふわ未来」冒頭30秒 |
+| 20261026-memo-x-30s.mp4 | 完成 | X 用（16:9）。第3弾：メモ（歌詞・セットリストを大きく表示、枠と色、ルビ、切り替え） | 架空のデータのみ（個人情報なし）。発売前のアプリ画面（テスト版）が映っている。未公開。BGM「ふわふわ未来」冒頭30秒。機能「メモ」はテスト版 v0.1.6 で追加した未公開の機能。歌詞はオリジナルの見本 |
+| 20261026-memo-ig-30s.mp4 | 完成 | Instagram リール用（9:16）。第3弾と同じ内容 | 架空のデータのみ（個人情報なし）。発売前のアプリ画面（テスト版）が映っている。未公開。BGM「ふわふわ未来」冒頭30秒。機能「メモ」はテスト版 v0.1.6 で追加した未公開の機能。歌詞はオリジナルの見本 |
+
+状態は「完成」「制作中」「素材のみ」のいずれかで書いてください。
+
+## 注意事項
+
+- GitHub の上限は 1 ファイル 100MB（ブラウザからのアップロードは 25MB まで）。超える場合は みだんさん に相談してください
+- 個人情報や未公開の画面が映っている場合は、上の表の備考欄にその旨を書いてください
