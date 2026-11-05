@@ -81,6 +81,7 @@
   footer { margin-top: 48px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center; }
   footer img { width: 160px; height: auto; }
+  footer .credit { flex-basis: 100%; font-size: 12px; }
   @media (max-width: 720px) {
     nav.links { display: none; }
     table.req th { width: 40%; }
@@ -137,14 +138,18 @@
       <h2 data-i18n="featuresTitle">できること</h2>
       <p class="section-lead" data-i18n="featuresLead">配信中は「配信モード」、配信の前後は「管理モード」。2つの画面で、リスナーさんとの時間を支えます。</p>
       <div class="grid">
-        <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f1Title">🗂 リスナーカード</h3><p data-i18n="f1Body">最大30枚のカードに、名前・友好度・応援の回数・月間成績・自分で作った項目（話題メモ、誕生日など）を表示。ドラッグで並べ替えられます。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f1Title">🗂 リスナーカード</h3><p data-i18n="f1Body">最大30枚のカードに、名前・友好度・応援の回数・月間成績・自分で作った項目（話題メモ、誕生日など）を表示。ドラッグで並べ替えられます。大事な人のカードは 📌 で固定でき、「表示リセット」でまとめて空けても1分以内なら元に戻せます。</p></div>
         <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f2Title">🚪 来訪記録</h3><p data-i18n="f2Body">「＋来訪」を押すだけで、今の枠（朝枠・昼枠・夜枠など）で何番目に来てくれたかを記録。押し間違いは取り消し・入れ替えできます。</p></div>
         <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f3Title">💌 今日のお礼</h3><p data-i18n="f3Body">その日に来てくれた人・応援してくれた人を一覧に。お礼をしたらチェックを入れると色が外れ、「まだお礼していない人だけ」で残りを確認できます。</p></div>
         <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f4Title">🎨 応援回数の段階色</h3><p data-i18n="f4Body">その日の応援の回数に応じて、カードの回数欄に色が付きます。色と回数の区切りは自由に変えられます（オン／オフ可）。</p></div>
         <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f5Title">📊 ダッシュボードと画像保存</h3><p data-i18n="f5Body">応援の推移や月間ランク別の人数をグラフで振り返り。SNS に載せやすいサイズで画像保存でき、リスナー名を伏せる設定が最初からオンです。</p></div>
         <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f6Title">📝 成績記録と Excel 出力</h3><p data-i18n="f6Body">配信後の数値（最大同時視聴者・コメント数など、すべて任意）を記録して、月ごとにグラフで振り返り・画像で保存。「コメント数」などの項目名は、使っている配信サービスの呼び方に変えられます。応援の記録や特典の配布チェックリストを Excel に出力できます。</p></div>
         <div class="card"><span class="tag" data-i18n="tagLook">見た目</span><h3 data-i18n="f7Title">🎀 選べるテーマ</h3><p data-i18n="f7Body">かわいい系／クール系 × ライト／ダーク、質感は「ぷにぷに・ふわふわ・カッチリ」。色も自由に変えられ、配信モード・管理モードは色とマークでひと目で見分けられます。使わない機能はボタンごと隠せ、管理メニューの並びや名前も変えられます。</p></div>
-        <div class="card"><span class="tag" data-i18n="tagSafe">データの保全</span><h3 data-i18n="f8Title">🛟 バックアップ</h3><p data-i18n="f8Body">手動バックアップ、起動時の自動バックアップ（1日1回・最新7個）、復元前の自動退避。大切な記録を守る仕組みを用意しています。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagSafe">データの保全</span><h3 data-i18n="f8Title">🛟 バックアップ</h3><p data-i18n="f8Body">手動バックアップ、起動時の自動バックアップ（1日1回・最新7個）、復元前の自動退避。アプリの更新の前にもデータを自動で複製し、大事な操作は「操作履歴」で確かめられます。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f11Title">🎵 SE（効果音・BGM）</h3><p data-i18n="f11Body">「🎵 SE」で画面の右端が SE のボタンに。拍手やクラッカーをボタンやキーで鳴らせます（アプリが前面でなくても鳴らせる設定も）。BGM の繰り返し再生、セットの切り替え、色や音量の調整も。最初から6つの効果音入り。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagLive">配信モード</span><h3 data-i18n="f12Title">📝 メモ</h3><p data-i18n="f12Body">歌詞・セットリスト・あいさつなどをメモしておき、配信中はカードの場所に大きく表示。強調の枠・色・ルビ（ふりがな）も付けられ、書いたら自動で保存します。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f13Title">🌐 複数のプラットフォーム</h3><p data-i18n="f13Body">1人のリスナーに、配信アプリをいくつでも登録。アプリごとの専用の項目（ランク・記念日など）を作って、カードで切り替えて入力できます。一覧をアプリごとに絞り込むことも。</p></div>
+        <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f14Title">🧹 整理・統合</h3><p data-i18n="f14Body">同じ人を別の名前で2回登録してしまっても、あとから1人にまとめられます（記録も一緒に移ります）。似た名前の項目も、中身を比べて確かめてから1つにまとめられます。</p></div>
         <div class="card"><span class="tag" data-i18n="tagManage">管理モード</span><h3 data-i18n="f9Title">📤 活動レポート</h3><p data-i18n="f9Body">選んだ期間の活動（配信の記録・配信時間・応援・月間ランク・来訪・予定など）を、1つの Excel にまとめて書き出し。自分の振り返りや記録の保管に。リスナーの情報を含めるかどうかも選べます。</p></div>
         <div class="card"><span class="tag" data-i18n="tagHelp">はじめての方へ</span><h3 data-i18n="f10Title">🧭 案内とツアー</h3><p data-i18n="f10Body">最初に決めておくと便利な設定の案内と、画面の場所を光らせながら使い方を紹介するツアー付き。迷ったら「？ 使い方」からいつでも見直せます。</p></div>
       </div>
@@ -161,6 +166,8 @@
         <figure><img data-shot="thanks" src="assets/screens/thanks-ja.png" width="1600" height="900" alt="今日のお礼の画面" data-i18n-alt="shotThanksAlt" loading="lazy"><figcaption data-i18n="shotThanks">今日のお礼：その日に来た人と回数の一覧。お礼したらチェック</figcaption></figure>
         <figure><img data-shot="dashboard" src="assets/screens/dashboard-ja.png" width="1600" height="900" alt="ダッシュボードの画面" data-i18n-alt="shotDashAlt" loading="lazy"><figcaption data-i18n="shotDash">ダッシュボード：応援の推移やランクの分布を振り返り</figcaption></figure>
         <figure><img data-shot="activity" src="assets/screens/activity-ja.png" width="1600" height="900" alt="活動レポートの画面" data-i18n-alt="shotActivityAlt" loading="lazy"><figcaption data-i18n="shotActivity">活動レポート：名前・期間・リスナーの情報の有無を選んで、Excel に書き出し</figcaption></figure>
+        <figure><img data-shot="se" src="assets/screens/se-ja.png" width="1600" height="900" alt="SE の画面" data-i18n-alt="shotSeAlt" loading="lazy"><figcaption data-i18n="shotSe">SE：画面の右端のボタンやキーで効果音を鳴らす。鳴っている音は光って分かる</figcaption></figure>
+        <figure><img data-shot="platforms" src="assets/screens/platforms-ja.png" width="1600" height="900" alt="独自項目の管理の画面" data-i18n-alt="shotPlatformsAlt" loading="lazy"><figcaption data-i18n="shotPlatforms">独自項目の管理：配信アプリごとに、ランクや記念日などの項目を作る</figcaption></figure>
       </div>
     </div>
   </section>
@@ -203,7 +210,7 @@
         <tr><th data-i18n="reqOs">OS</th><td data-i18n="reqOsValue">Windows（64bit）／ macOS 11 以降</td></tr>
         <tr><th data-i18n="reqNet">ネット接続</th><td data-i18n="reqNetValue">アプリを使っている最中は不要です（Steam での購入・ダウンロード・更新には必要です）。</td></tr>
         <tr><th data-i18n="reqData">データの保存先</th><td data-i18n="reqDataValue">お使いの PC の中だけ（クラウド同期なし）</td></tr>
-        <tr><th data-i18n="reqPlatform">配信サービス</th><td data-i18n="reqPlatformValue">どの配信サービスでも使えます。配信サービスとの自動連携はなく、来訪・回数・メモは手で入力します。</td></tr>
+        <tr><th data-i18n="reqPlatform">配信サービス</th><td data-i18n="reqPlatformValue">どの配信サービスでも使えます（1人のリスナーに複数の配信アプリを登録できます）。配信サービスとの自動連携はなく、来訪・回数・メモは手で入力します。</td></tr>
       </table>
     </div>
   </section>
@@ -231,6 +238,7 @@
   <div class="wrap">
     <img src="assets/logo.png" width="640" height="219" alt="Listener Desk">
     <span data-i18n="footer">© Listener Desk. 配信者さんが配信に使う時間を、1秒でも長く。</span>
+    <small class="credit" data-i18n="credit">アプリに入っている効果音：OtoLogic（https://otologic.jp）CC BY 4.0</small>
   </div>
 </footer>
 
@@ -248,14 +256,18 @@
     featuresTitle: "What you can do",
     featuresLead: "Live mode for during your stream, Manage mode for before and after. Two screens that support your time with listeners.",
     tagLive: "Live mode", tagManage: "Manage mode", tagLook: "Look & feel", tagSafe: "Data safety",
-    f1Title: "🗂 Listener cards", f1Body: "Up to 30 cards showing name, closeness, support count, monthly rank and your own fields (topic notes, birthday and more). Drag to rearrange.",
+    f1Title: "🗂 Listener cards", f1Body: "Up to 30 cards showing name, closeness, support count, monthly rank and your own fields (topic notes, birthday and more). Drag to rearrange. Pin important cards with 📌, and if you clear them all with “Reset display”, you can undo it within a minute.",
     f2Title: "🚪 Visit records", f2Body: "Press “+ Visit” to record who arrived and in what order in the current session (morning, afternoon, night…). Mistakes can be undone or reordered.",
     f3Title: "💌 Today's thanks", f3Body: "See everyone who visited or supported you that day. Check them off after thanking them and the color clears; “Only not thanked yet” shows who's left.",
     f4Title: "🎨 Count colors", f4Body: "The count box on each card changes color with today's support count. Colors and thresholds are fully customizable (can be turned off).",
     f5Title: "📊 Dashboard & image export", f5Body: "Look back on support trends and rank distribution with charts. Save as an image in social-friendly sizes, with listener names hidden by default.",
     f6Title: "📝 Stream stats & Excel export", f6Body: "Log your numbers after a stream (peak viewers, comments and more, all optional), then review them by month with charts and save them as images. Rename items like “Comments” to match your streaming service. Export support records and reward checklists to Excel.",
     f7Title: "🎀 Themes", f7Body: "Kawaii or Cool × Light or Dark, with Squishy, Fluffy or Crisp textures. Customize colors, and tell Live and Manage mode apart at a glance by color and icon. Hide features you don't use, and reorder or rename the manage menu.",
-    f8Title: "🛟 Backups", f8Body: "Manual backups, automatic backups at startup (once a day, newest 7 kept) and an automatic safety copy before restoring.",
+    f8Title: "🛟 Backups", f8Body: "Manual backups, automatic backups at startup (once a day, newest 7 kept) and an automatic safety copy before restoring. Your data is also copied automatically before app updates, and the operation history shows when important actions happened.",
+    f11Title: "🎵 SE (sound effects & BGM)", f11Body: "Press “🎵 SE” to turn the right edge of the screen into sound buttons. Play applause or a party popper with a button or a key (even while the app isn't in front, if you turn it on). Loop BGM, switch sets, and adjust colors and volume. Six sound effects are included.",
+    f12Title: "📝 Notes", f12Body: "Keep lyrics, set lists or greetings as notes and show them large in place of the cards while you stream. Add highlight frames, colors and ruby (reading aids); notes save automatically as you type.",
+    f13Title: "🌐 Multiple platforms", f13Body: "Register as many streaming apps as you like for each listener. Create fields for each app (rank, anniversary and more) and switch between them on the card. You can also filter the list by app.",
+    f14Title: "🧹 Tidy up & merge", f14Body: "Registered the same person twice under different names? Merge them into one later, records included. Similar card fields can be combined too, after comparing their contents.",
     future: "Optional add-ons are also in development (see “Add-ons” below).",
     navExt: "Add-ons (in development)", tagHelp: "Getting started",
     f9Title: "📤 Activity report", f9Body: "Export your activity for any period (stream records, streaming time, support, monthly ranks, visits, schedule and more) into one Excel file, for looking back or keeping records. You choose whether to include listener information.",
@@ -278,12 +290,14 @@
     shotLiveAlt: "Live mode screen", shotLive: "Live mode: record visit order (e.g. Night 3) and support counts on cards",
     shotThanksAlt: "Today's thanks screen", shotThanks: "Today's thanks: everyone who came that day, with counts. Check them off after thanking",
     shotDashAlt: "Dashboard screen", shotDash: "Dashboard: look back on support trends and rank distribution",
+    shotSeAlt: "SE screen", shotSe: "SE: play sound effects with buttons on the right edge or with keys. Sounds that are playing light up",
+    shotPlatformsAlt: "Custom fields screen", shotPlatforms: "Custom fields: create fields such as rank or anniversary for each streaming app",
     langsTitle: "Languages",
     translationNote: "Spotted a weird translation? Please let us know (*ﾉω・*)ﾃﾍ",
     reqTitle: "System requirements", reqOs: "OS", reqOsValue: "Windows (64-bit) / macOS 11 or later",
     reqNet: "Internet", reqNetValue: "Not needed while using the app (needed to buy, download and update on Steam).",
     reqData: "Where data is stored", reqDataValue: "Only on your PC (no cloud sync)",
-    reqPlatform: "Streaming services", reqPlatformValue: "Works with any streaming service. There is no automatic connection to streaming services; you enter visits, counts and notes yourself.",
+    reqPlatform: "Streaming services", reqPlatformValue: "Works with any streaming service (each listener can have several streaming apps). There is no automatic connection to streaming services; you enter visits, counts and notes yourself.",
     faqTitle: "FAQ",
     q1: "Is there cloud sync?", a1: "No. All data is stored on your own PC.",
     q2: "Can I use the same data on another PC?", a2: "Yes, by saving a backup file and restoring it on the other PC. It does not sync automatically.",
@@ -293,6 +307,7 @@
     navContact: "Contact", contactTitle: "Contact",
     contactBody: "For feedback, bug reports or odd translations, feel free to reach the developer on X (formerly Twitter).",
     footer: "© Listener Desk. More of your time for streaming, even by a second.",
+    credit: "Sound effects included in the app: OtoLogic (https://otologic.jp), CC BY 4.0",
   };
   const JA = {};
   document.querySelectorAll("[data-i18n]").forEach(el => { JA[el.dataset.i18n] = el.textContent; });
